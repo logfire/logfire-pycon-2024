@@ -39,6 +39,7 @@ dnspython==2.6.1
     # via email-validator
 email-validator==2.1.1
     # via fastapi
+    # via pydantic
 executing==2.0.1
     # via logfire
 fastapi==0.111.0
@@ -46,6 +47,8 @@ fastapi==0.111.0
     # via logfire-talk
 fastapi-cli==0.0.3
     # via fastapi
+fastui==0.6.0
+    # via logfire-talk
 googleapis-common-protos==1.63.0
     # via opentelemetry-exporter-otlp-proto-http
 h11==0.14.0
@@ -68,7 +71,7 @@ importlib-metadata==7.0.0
     # via opentelemetry-api
 jinja2==3.1.4
     # via fastapi
-logfire==0.32.1
+logfire==0.46.1
     # via logfire-talk
 markdown-it-py==3.0.0
     # via rich
@@ -147,14 +150,19 @@ psutil==5.9.8
     # via opentelemetry-instrumentation-system-metrics
 pydantic==2.7.1
     # via fastapi
+    # via fastui
     # via openai
+    # via pydantic-settings
 pydantic-core==2.18.2
     # via pydantic
+pydantic-settings==2.3.4
+    # via logfire-talk
 pygments==2.18.0
     # via rich
 python-dateutil==2.9.0.post0
     # via pandas
 python-dotenv==1.0.1
+    # via pydantic-settings
     # via uvicorn
 python-multipart==0.0.9
     # via fastapi
