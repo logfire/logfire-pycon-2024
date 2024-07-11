@@ -43,13 +43,13 @@ async def create_image(conn: Connection, openai_client: AsyncClient, animal: str
 
 
 async def create_images(conn: Connection) -> None:
-    image_count = await conn.fetchval('SELECT count(*) from images')
-    if image_count > 1000:
-        return
+    # image_count = await conn.fetchval('SELECT count(*) from images')
+    # if image_count > 1000:
+    #     return
 
     ts = datetime(2024, 1, 1)
     images = []
-    for _ in range(1_000_000):
+    for _ in range(1_000):
         ts = ts + timedelta(seconds=1)
         images.append((ts, 'test data', 'https://example.com'))
     await conn.executemany(f'INSERT INTO images (ts, prompt, url) VALUES ($1, $2, $3)', images)
