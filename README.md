@@ -1,6 +1,8 @@
 # Logfire Pycon 2024
 
-Code snippets from [this](https://slides.com/samuelcolvin-pydantic/deck) talk given at Pycon US on 2024-05-16.
+Code snippets from:
+* [this](https://slides.com/samuelcolvin-pydantic/deck) talk at Pycon US on 2024-05-16
+* [this](https://slides.com/samuelcolvin-pydantic/logfire-pycon-2024) at EuroPython on 2024-07-12 (most of the talk was a live demo, so only a few slides)
 
 The rest of the example from the [logfire-demo](https://github.com/pydantic/logfire-demo) project.
 
