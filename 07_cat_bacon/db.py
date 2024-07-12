@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from typing import AsyncIterator, Self, Annotated
 from urllib.parse import urlparse
 
+import logfire
 from fastapi import Request, Depends
 
 import asyncpg
@@ -53,7 +54,10 @@ def _get_db(request: Request) -> _Database:
 Database = Annotated[_Database, Depends(_get_db)]
 
 
+@logfire.instrument()
 async def _prepare_db(dsn: str, create_database: bool) -> None:
+    x = {'foobar': 123, 'baz': 'qux'}
+    logfire.info(f'Preparing database {x}')
     if create_database:
         parse_result = urlparse(dsn)
         database = parse_result.path.lstrip('/')

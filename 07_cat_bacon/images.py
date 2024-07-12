@@ -21,10 +21,11 @@ PAGE_LIMIT = 50
 
 async def list_images(conn: Connection, page: int) -> tuple[list[Image], int]:
     offset = (page - 1) * PAGE_LIMIT
-    ids = await conn.fetch('SELECT id FROM images ORDER BY ts desc OFFSET $1 LIMIT $2', offset, PAGE_LIMIT)
-    rows = []
-    for row in ids:
-        rows.append(await conn.fetchrow('SELECT * FROM images where id=$1', row['id']))
+    rows = await conn.fetch('SELECT * FROM images ORDER BY ts desc OFFSET $1 LIMIT $2', offset, PAGE_LIMIT)
+    # ids = await conn.fetch('SELECT id FROM images ORDER BY ts desc OFFSET $1 LIMIT $2', offset, PAGE_LIMIT)
+    # rows = []
+    # for row in ids:
+    #     rows.append(await conn.fetchrow('SELECT * FROM images where id=$1', row['id']))
     images = images_adapter.validate_python(rows)
     total = await conn.fetchval('SELECT COUNT(*) FROM images')
     return images, total
