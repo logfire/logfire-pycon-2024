@@ -31,7 +31,7 @@ def payment_complete(user_id: int):
                 currency=currency,
                 payment_method=payment_method,
                 confirm=True,
-                return_url="https://example.com/return",
+                return_url='https://example.com/return',
             )
         except stripe.CardError as e:
             span.set_level('warning')

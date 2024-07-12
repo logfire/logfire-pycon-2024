@@ -9,7 +9,6 @@ logfire.info('Hello {name}', name='world')
 
 activity = 'work'
 with logfire.span('doing some slow {activity}...', activity=activity):
-
     logfire.info('{fruit=}', fruit='banana')
     sleep(0.123)
     with logfire.span('more nesting'):

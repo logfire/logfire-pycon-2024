@@ -80,5 +80,6 @@ async def main():
             with repos_path.open('w') as f:
                 json.dump(existing_repos, f, indent=2)
 
+
 if __name__ == '__main__':
     asyncio.run(main())

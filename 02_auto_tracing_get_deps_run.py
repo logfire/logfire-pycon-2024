@@ -8,6 +8,7 @@ del sys.modules['os']
 logfire.install_auto_tracing(modules=['dependants', 'bs4.*'], min_duration=0.03)
 
 from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
+
 HTTPXClientInstrumentor().instrument()
 
 
