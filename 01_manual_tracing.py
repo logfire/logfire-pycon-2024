@@ -1,11 +1,17 @@
+from dataclasses import dataclass
 from time import sleep
 import logfire
 
 # With kwargs:
 logfire.configure()
 
+@dataclass
+class Foo:
+    bar: str
+    baz: int
 
-logfire.info('Hello {name}', name='world')
+
+logfire.info('Hello {name}', name='world', foo=Foo('qux', 123))
 
 activity = 'work'
 with logfire.span('doing some slow {activity}...', activity=activity):

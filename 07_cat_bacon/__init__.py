@@ -12,9 +12,10 @@ from .main import router as main_router
 
 logfire.configure()
 
+
 class Settings(BaseSettings):
     create_database: bool = True
-    pg_dsn: str = 'postgres://postgres:postgres@localhost/cat_bacon'
+    pg_dsn: str = 'postgres://postgres:postgres@localhost/cat_bacon_fastapi'
 
 
 settings = Settings()  # type: ignore
@@ -40,4 +41,4 @@ app.include_router(main_router, prefix='/api')
 @app.get('/{path:path}')
 async def html_landing() -> HTMLResponse:
     """Simple HTML page which serves the React app, comes last as it matches all paths."""
-    return HTMLResponse(prebuilt_html(title='FastUI Demo'))
+    return HTMLResponse(prebuilt_html(title='Logfire Cat Bacon'))
