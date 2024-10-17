@@ -82,7 +82,6 @@ CREATE TABLE IF NOT EXISTS images (
     prompt TEXT NOT NULL,
     url TEXT NOT NULL
 );
--- CREATE INDEX IF NOT EXISTS images_ts_idx ON images (ts DESC);
 """)
     from .images import create_images
 
