@@ -1,16 +1,13 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastui import prebuilt_html
 from pydantic_settings import BaseSettings
 from openai import AsyncClient
-import logfire
 
 from .db import Database
 from .main import router as main_router
-
-logfire.configure()
 
 
 class Settings(BaseSettings):
@@ -26,16 +23,18 @@ async def lifespan(app_: FastAPI):
     async with Database.create(settings.pg_dsn, True, settings.create_database) as db:
         app_.state.db = db
         openai = AsyncClient()
-        logfire.instrument_openai(openai)
         app_.state.openai = openai
         yield
 
 
-logfire.instrument_asyncpg()
 app = FastAPI(lifespan=lifespan)
-logfire.instrument_fastapi(app)
 
 app.include_router(main_router, prefix='/api')
+
+
+@app.get('/favicon.ico')
+async def favicon():
+    return RedirectResponse(url='https://smokeshow.helpmanual.io/favicon.ico')
 
 
 @app.get('/{path:path}')
